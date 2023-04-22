@@ -2,7 +2,6 @@ import { useState, useContext, useEffect } from 'react'
 import { getFirestore, collection } from 'firebase/firestore';
 import { useCollection } from 'react-firebase-hooks/firestore';
 import FirebaseContext from './context/firebase';
-import './App.css'
 import { getAuth, signOut } from 'firebase/auth';
 import { useAuthState } from 'react-firebase-hooks/auth';
 
@@ -33,7 +32,7 @@ function App() {
   }
 
   return (
-    <div>
+    <div className>
       <section>
         {user ? <h1>{user.uid}</h1> : <h1>No user</h1>}
       </section>
@@ -43,7 +42,8 @@ function App() {
           {value.docs.map(doc => <p key={doc.id}>{JSON.stringify(doc.data())}</p>)}
         </div>
       }
-      {auth && <button onClick={handleSignout}>Sign out</button>}
+      {auth.currentUser && <button onClick={handleSignout}>Sign out</button>}
+      <h6 className='font-semibold text-black'>helloworld</h6>
     </div>
   );
 }

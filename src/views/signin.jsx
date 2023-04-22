@@ -16,13 +16,14 @@ export default function SignIn() {
   const navigateTo = useNavigate();
 
   useEffect(() => {
-    if(auth){
+    if(auth.currentUser){
+      console.log("first", auth.currentUser);
       navigateTo('/');
     }
   })
 
   useEffect(() => {
-    navigateTo('/');
+    if(auth.currentUser) navigateTo('/');
   }, [googleUser, githubUser]);
 
   const handleSignInGithub = () => {
