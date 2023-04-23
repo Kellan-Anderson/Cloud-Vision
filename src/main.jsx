@@ -7,6 +7,7 @@ import { Outlet, BrowserRouter, Routes, Route } from 'react-router-dom'
 import ImageList from './views/imageList'
 import ImagePage from './views/imagePage'
 import NavBar from './components/NavBar'
+import Albums from './views/albums'
 
 const Layout = () => {
   return (
@@ -29,6 +30,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route index element={<App />}/>
             <Route path='images' element={<ImageList />} />
             <Route path='images/:id' element={<ImagePage />} />
+            <Route path='albums' element={<Albums />} />
           </Route>
         </Routes>
       </BrowserRouter>
