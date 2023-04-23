@@ -4,13 +4,17 @@ import App from './App'
 import './index.css'
 import { FirebaseProvider } from './context/firebase'
 import { Outlet, BrowserRouter, Routes, Route } from 'react-router-dom'
-import SignIn from './views/signin'
 import ImageList from './views/imageList'
 import ImagePage from './views/imagePage'
+import NavBar from './components/NavBar'
 
 const Layout = () => {
   return (
-    <div className='text-white font-main min-h-screen flex justify-center items-center bg-neutral-900'>
+    <div 
+      className='text-white font-main min-h-screen flex flex-col justify-center items-center 
+               bg-neutral-900'
+    >
+      <NavBar />
       <Outlet />
     </div>
   );
@@ -23,7 +27,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
         <Routes>
           <Route path='/' element={<Layout/>}>
             <Route index element={<App />}/>
-            <Route path='signIn' element={<SignIn />} />
             <Route path='images' element={<ImageList />} />
             <Route path='images/:id' element={<ImagePage />} />
           </Route>

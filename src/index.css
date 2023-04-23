@@ -6,6 +6,18 @@
   .label-tag {
     @apply bg-zinc-900 rounded-md px-2 py-px mt-1 ml-1
   }
+
+  .btn-sign-in {
+    @apply rounded-2xl h-12 flex flex-row justify-between items-center w-fit first:mb-3
+  }
+
+  .btn-primary {
+    @apply flex flex-row justify-center items-center px-6 py-1 m-1 w-96
+  }
+
+  .icon {
+    @apply h-6 w-6 mr-2 fill-white
+  }
 }
 
 @layer base {
