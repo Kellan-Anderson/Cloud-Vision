@@ -17,23 +17,26 @@ export default function ImageList() {
   const [value, setValue] = useState(v);
   useEffect(() => {
     setValue(v);
-  }, [v, loading, error]);
+  }, [v, loading]);
 
   return (
     <>
     {auth ? 
-      <div>
-        <h1 className="font-semibold text-4xl md:text-8xl mb-12 mt-24 text-center">
-          UPLOADED IMAGES
-        </h1>
-        <div className="w-full px-8">
-          <div className="flex flex-row flex-wrap justify-center w-full">
-            <>
-              {value?.docs.map((doc) => <ImageCard key={doc.id} imageDoc={doc}/> )}
-            </>
+      <> 
+      { loading ? <svg class="animate-spin h-5 w-5" viewBox="0 0 24 24"></svg> :
+        <div>
+          <h1 className="font-semibold text-4xl md:text-8xl mb-12 mt-24 text-center">
+            UPLOADED IMAGES
+          </h1>
+          <div className="w-full px-8">
+            <div className="flex flex-row flex-wrap justify-center w-full">
+              <>
+                {value?.docs.map((doc) => <ImageCard key={doc.id} imageDoc={doc}/> )}
+              </>
+            </div>
           </div>
         </div>
-      </div>
+      } </>
       :
       <h1>{/* User not logged in */}</h1>
     }

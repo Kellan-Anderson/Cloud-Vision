@@ -6,6 +6,7 @@ import { FirebaseProvider } from './context/firebase'
 import { Outlet, BrowserRouter, Routes, Route } from 'react-router-dom'
 import SignIn from './views/signin'
 import ImageList from './views/imageList'
+import ImagePage from './views/imagePage'
 
 const Layout = () => {
   return (
@@ -24,6 +25,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route index element={<App />}/>
             <Route path='signIn' element={<SignIn />} />
             <Route path='images' element={<ImageList />} />
+            <Route path='images/:id' element={<ImagePage />} />
           </Route>
         </Routes>
       </BrowserRouter>

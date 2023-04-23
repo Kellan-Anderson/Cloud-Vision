@@ -5,8 +5,6 @@ export default function ImageCard({ imageDoc }) {
   const url = `https://firebasestorage.googleapis.com/v0/b/vision-media-b5556.appspot.com/o/${imageName}?alt=media`;
   const data = imageDoc.data();
   const labels = data.labelAnnotations;
-  console.log(imageDoc.data().labelAnnotations)
-
 
   return (
     <div className="border-stone-950 border-2 flex flex-col justify-center items-center w-72 m-6 px-3 py-3 rounded-xl bg-stone-800 justify-self-center">
