@@ -28,7 +28,15 @@ export default function Albums() {
   )
   if(result && urls === null) {
     Promise.all(result?.docs.map((doc) => getDownloadURL(ref(storage, doc.data().uri)))).then((urlArray) => {
-      setUrls(urlArray);
+      let dat = [];
+      for(let i = 0; i < result.docs.length; i++) {
+        dat[i] = {
+          downloadUrl: urlArray[i],
+          ...result.docs[i].data()
+        }
+      }
+      console.log(dat)
+      setUrls(dat);
     })
   }
 
@@ -38,8 +46,9 @@ export default function Albums() {
         <>
           {user ?
             <div className="grid grid-cols-3">
-              {urls ? urls.map((url, index) => <img draggable="true" className="bg-black m-8 w-64 h-64 object-scale-down transform hover:shadow-md hover:scale-110 transition-all duration-200" key={index} src={url}></img>) : <p></p>}
-              {/* Write album component here */}
+              {urls ? urls.map((url, index) => 
+              <a className="m-8" key={url.id} href={url.downloadUrl}><img draggable="true" className="bg-black w-64 h-64 object-scale-down transform hover:shadow-md hover:scale-110 transition-all duration-200" src={url.downloadUrl}></img></a>
+              ) : <p></p>}
             </div>
             :
             <div className="flex flex-col justify-center items-center">
