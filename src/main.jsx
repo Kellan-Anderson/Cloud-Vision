@@ -8,6 +8,7 @@ import ImageList from './views/imageList'
 import ImagePage from './views/imagePage'
 import NavBar from './components/NavBar'
 import Albums from './views/albums'
+import ImageUpload from "./views/imageUpload";
 
 const Layout = () => {
   return (
@@ -31,6 +32,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path='images' element={<ImageList />} />
             <Route path='images/:id' element={<ImagePage />} />
             <Route path='albums' element={<Albums />} />
+            <Route path='upload/:id' element={<ImageUpload />} />
           </Route>
         </Routes>
       </BrowserRouter>
