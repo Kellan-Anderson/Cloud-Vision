@@ -38,7 +38,7 @@ export default function Albums() {
         <>
           {user ?
             <div className="grid grid-cols-3">
-              {urls ? urls.map((url, index) => <img draggable="true" className="w-64 h-64 object-scale-down" key={index} src={url}></img>) : <p></p>}
+              {urls ? urls.map((url, index) => <img draggable="true" className="bg-black m-8 w-64 h-64 object-scale-down transform hover:shadow-md hover:scale-110 transition-all duration-300" key={index} src={url}></img>) : <p></p>}
               {/* Write album component here */}
             </div>
             :
