@@ -32,7 +32,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route path='images' element={<ImageList />} />
             <Route path='images/:id' element={<ImagePage />} />
             <Route path='albums' element={<Albums />} />
-            <Route path='upload/:id' element={<ImageUpload />} />
+            <Route path='upload/' element={<ImageUpload />} />
           </Route>
         </Routes>
       </BrowserRouter>

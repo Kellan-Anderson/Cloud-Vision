@@ -1,5 +1,4 @@
-import React, { useEffect, useState } from "react";
-import { useContext } from "react";
+import React, { useEffect, useState, useContext } from "react";
 import FirebaseContext from "../context/firebase";
 import { getAuth } from "firebase/auth";
 import { getFirestore, collection } from "firebase/firestore";
@@ -16,18 +15,18 @@ export default function ImageList() {
   const auth = getAuth(app);
   const [authUser, authLoading, authError] = useAuthState(auth);
   const [user, setUser] = useState(authUser);
+  const [userId, setUserId] = useState('dummy-do-not-delete');
   useEffect(() => {
     setUser(authUser);
+    setUserId(authUser !== null ? authUser.uid : userId);
   }, [authLoading, authUser]);
   
-  
-  const [v, firestoreLoading, firestoreError] = useCollection(
-    collection(getFirestore(app), 'images')
-  );
-  const [value, setValue] = useState(v);
+
+  let [v, firestoreLoading, firestoreError] = useCollection(collection(getFirestore(app), userId));
+  const [value, setValue] = useState(undefined);
   useEffect(() => {
     setValue(v);
-  }, [v, firestoreLoading]);
+  }, [v, firestoreLoading, user]);
 
   return (
     <>

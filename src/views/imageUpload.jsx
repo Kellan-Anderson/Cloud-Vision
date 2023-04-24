@@ -24,8 +24,6 @@ export  default function ImageUpload(){
     setUser(authUser);
   }, [authUser, authLoading]);
 
-  let id = useParams();
-
   const storage = getStorage(app);
   const [uploadFile, uploading, snapshot, uploadError] = useUploadFile(); //initializes a file
 
