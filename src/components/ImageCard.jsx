@@ -1,7 +1,6 @@
 import React from "react";
 
 export default function ImageCard({ imageDoc }) {
-  console.log(imageDoc);
   const data = imageDoc.data();
   const [path, filename] = data.uri.split("/");
   const labels = data.label_detection.labelAnnotations;
@@ -14,7 +13,7 @@ export default function ImageCard({ imageDoc }) {
                   py-3 rounded-xl bg-stone-800 justify-self-center"
     >
       <img src={url} alt={filename} className="h-48 w-fit"/>
-      <h2 id="card-title" className="break-words text-center my-1 font-semibold">{filename}</h2>
+      <h2 id="card-title" className="break-words text-center w-full my-1 font-semibold">{filename}</h2>
       <div id="tags" className="flex flex-wrap">
         {labels.map((label) => 
           <p key={label.mid} className="label-tag">{label.description}</p>

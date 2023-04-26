@@ -34,10 +34,10 @@ export default function ImageList() {
       <> 
       { firestoreLoading || authLoading ? <Loading /> :
         <div>
-          <h1 className="font-semibold text-4xl md:text-8xl mb-12 mt-24 text-center">
+          <h1 className="w-full font-semibold text-4xl md:text-8xl mb-12 mt-24 mx-0 text-center">
             UPLOADED IMAGES
           </h1>
-          <div className="w-full px-8">
+          <div className="w-full md:px-8">
             <div className="flex flex-row flex-wrap justify-center w-full">
               <>
                 {value?.docs.map((doc) => <ImageCard key={doc.id} imageDoc={doc}/> )}

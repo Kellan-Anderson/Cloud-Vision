@@ -20,7 +20,7 @@ function App() {
   const navigateTo = useNavigate();
 
   return (
-    <div className='flex flex-col justify-center items-center'>
+    <div className='flex flex-col justify-center items-center text-center'>
     {user ? 
       <>
         <h1 className='mb-8'>Hello {user.displayName.split(" ")[0]}!</h1>
