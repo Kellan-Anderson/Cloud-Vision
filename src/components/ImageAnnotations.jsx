@@ -28,7 +28,7 @@ export default function ImageAnnotations({doc, url}) {
             const normalized = normalize(annotation.boundingPoly.normalizedVertices, x, y);
             return (
               <>
-                <text filter="url(#solid)" x={normalized[1].x} y={normalized[1].y} fill="blue" textAnchor="end" fontSize={x / 25}>
+                <text filter="url(#solid)" x={normalized[1].x} y={normalized[1].y + (y/15)} fill="blue" textAnchor="end" fontSize={x / 25}>
                   {annotation.name}
                 </text>
                 <path key={index} d={pathString(normalized)} fill="none" stroke="blue" strokeWidth="5" />
