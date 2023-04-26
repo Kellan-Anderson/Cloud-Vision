@@ -25,7 +25,7 @@ function App() {
       <>
         <h1 className='mb-8'>Hello {user.displayName.split(" ")[0]}!</h1>
         <div className='flex flex-col'>
-          <button className='btn-primary' onClick={() => navigateTo("upload/:id")}>
+          <button className='btn-primary' onClick={() => navigateTo("upload/")}>
             <svg xmlns="http://www.w3.org/2000/svg" className="icon" viewBox="0 0 640 512">
               <path d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 
                        96.2-135.9c-.1-2.7-.2-5.4-.2-8.1c0-88.4 71.6-160 160-160c59.3 0 111 32.2 
