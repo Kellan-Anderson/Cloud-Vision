@@ -6,7 +6,7 @@ export default function ImageAnnotations({doc, url}) {
     const parentDiv = useRef(null);
     const image = useRef(null);
 
-    const vertices = doc.data().object_detection?.localizedObjectAnnotations?.[0]?.boundingPoly?.normalizedVertices;
+    const vertices = doc.data()?.localizedObjectAnnotations?.[0]?.boundingPoly?.normalizedVertices;
 
     return <div className="relative flex w-3/5 h-3/5 mt-16">
     <div ref={parentDiv} className="relative w-full h-full">
@@ -24,7 +24,7 @@ export default function ImageAnnotations({doc, url}) {
             </filter>
           </defs>
           {/** From all annotations, we need to get  */}
-          {doc.data().object_detection?.localizedObjectAnnotations?.map((annotation, index) => {
+          {doc.data().localizedObjectAnnotations?.map((annotation, index) => {
             const normalized = normalize(annotation.boundingPoly.normalizedVertices, x, y);
             return (
               <>

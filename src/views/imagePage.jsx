@@ -37,7 +37,7 @@ export default function ImagePage() {
   let url = '';
   if(image) {
     const data = image.data();
-    labels = data.label_detection.labelAnnotations;
+    labels = data.labelAnnotations;
     [path, filename] = data.uri.split("/");
     url = `https://firebasestorage.googleapis.com/v0/b/vision-media-b5556.appspot.com/o/${path}%2F${filename}?alt=media`;
   }
