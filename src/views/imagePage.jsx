@@ -47,7 +47,7 @@ export default function ImagePage() {
       <div className="flex flex-col justify-center items-center w-full">
         {loading ? <Loading /> : 
           <>
-            <img className="h-96 w-fit mt-16" src={url} alt={id} />
+            <img className="object-scale-down h-96 w-fit mt-16" src={url} alt={id} />
             <h1 className="mt-7 mb-10">{filename}</h1>
             <section className="px-20 mb-6 w-full">
               <div 
