@@ -8,6 +8,7 @@ import { useDocument } from "react-firebase-hooks/firestore";
 import Loading from "../components/Loading";
 import { useAuthState } from "react-firebase-hooks/auth";
 import SignIn from "../components/signin";
+import ImageAnnotations from "../components/ImageAnnotations";
 
 export default function ImagePage() {
   const getFirebaseApp = useContext(FirebaseContext);
@@ -47,7 +48,7 @@ export default function ImagePage() {
       <div className="flex flex-col justify-center items-center w-full">
         {loading ? <Loading /> : 
           <>
-            <img className="object-scale-down h-96 w-fit mt-16" src={url} alt={id} />
+          <ImageAnnotations url={url} doc={val}></ImageAnnotations>
             <h1 className="mt-7 mb-10">{filename}</h1>
             <section className="px-20 mb-6 w-full">
               <div 
