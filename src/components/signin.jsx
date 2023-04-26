@@ -3,7 +3,6 @@ import { useContext } from "react";
 import { getAuth } from "firebase/auth";
 import { useSignInWithGoogle, useSignInWithGithub } from "react-firebase-hooks/auth";
 import FirebaseContext from "../context/firebase";
-import { useNavigate } from "react-router-dom";
 
 export default function SignIn() {
   const getFirebaseApp = useContext(FirebaseContext);
@@ -15,12 +14,10 @@ export default function SignIn() {
 
   const handleSignInGithub = () => {
     signInWithGithub();
-    navigateTo("/");
   }
 
   const handleSignInGoogle = () => {
     signInWithGoogle();
-    navigateTo("/");
   }
 
   return (
