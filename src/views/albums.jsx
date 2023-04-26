@@ -32,7 +32,8 @@ export default function Albums() {
       for(let i = 0; i < result.docs.length; i++) {
         dat[i] = {
           downloadUrl: urlArray[i],
-          ...result.docs[i].data()
+          ...result.docs[i].data(),
+          id: result.docs[i].id
         }
       }
       console.log(dat)
@@ -47,7 +48,7 @@ export default function Albums() {
           {user ?
             <div className="grid grid-cols-3">
               {urls ? urls.map((url, index) => 
-              <a className="m-8" key={url.id} href={url.downloadUrl}><img draggable="true" className="bg-black w-64 h-64 object-scale-down transform hover:shadow-md hover:scale-110 transition-all duration-200" src={url.downloadUrl}></img></a>
+              <a className="m-8" key={url.id} href={`/images/${url.id}`}><img draggable="true" className="bg-black w-64 h-64 object-scale-down transform hover:shadow-md hover:scale-110 transition-all duration-200" src={url.downloadUrl}></img></a>
               ) : <p></p>}
             </div>
             :
