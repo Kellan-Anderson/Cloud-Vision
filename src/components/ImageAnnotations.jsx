@@ -8,7 +8,7 @@ export default function ImageAnnotations({doc, url}) {
 
     const vertices = doc.data()?.localizedObjectAnnotations?.[0]?.boundingPoly?.normalizedVertices;
 
-    return <div className="relative flex w-3/5 h-3/5 mt-16">
+    return <div className="relative flex w-2/5 h-2/5 mt-16">
     <div ref={parentDiv} className="relative w-full h-full">
       <img ref={image} onLoad={() => setCoords([image.current.width, image.current.height])} className="" src={url} alt={doc.id} />
       {imageLoaded ? (

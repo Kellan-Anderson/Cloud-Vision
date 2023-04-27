@@ -57,6 +57,7 @@ export default function ImagePage() {
             {/* Show the iamge annotations */}
             <ImageAnnotations url={url} doc={val}></ImageAnnotations>
             <h1 className="mt-7 mb-10">{filename}</h1>
+            {val.data().webDetection.bestGuessLabels && <p>🤔 I think this is a "{val.data().webDetection.bestGuessLabels[0].label}"</p>}
             <section className="px-20 mb-6 w-full">
               <div 
                 id="image-description" 
