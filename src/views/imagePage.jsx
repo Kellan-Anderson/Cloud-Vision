@@ -48,7 +48,7 @@ export default function ImagePage() {
       <div className="flex flex-col justify-center items-center w-full">
         {loading ? <Loading /> : 
           <>
-          <ImageAnnotations url={url} doc={val}></ImageAnnotations>
+            <ImageAnnotations url={url} doc={val}></ImageAnnotations>
             <h1 className="mt-7 mb-10">{filename}</h1>
             <section className="px-20 mb-6 w-full">
               <div 
