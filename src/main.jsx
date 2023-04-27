@@ -10,6 +10,11 @@ import NavBar from './components/NavBar'
 import Albums from './views/albums'
 import ImageUpload from "./views/imageUpload";
 
+/**
+ * Layout for the app, contains a reference to the navbar and the rest of the application (rendered
+ * inside outlet by react-router)
+ * @returns 
+ */
 const Layout = () => {
   return (
     <div 
@@ -22,6 +27,10 @@ const Layout = () => {
   );
 }
 
+/**
+ * Creates a root for the project to be rendered inside as well as several paths to be navigated 
+ * throught the project
+ */
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
     <FirebaseProvider>
@@ -31,7 +40,6 @@ ReactDOM.createRoot(document.getElementById('root')).render(
             <Route index element={<App />}/>
             <Route path='images' element={<ImageList />} />
             <Route path='images/:id' element={<ImagePage />} />
-            <Route path='albums' element={<Albums />} />
             <Route path='upload/' element={<ImageUpload />} />
           </Route>
         </Routes>

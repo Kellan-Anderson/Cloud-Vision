@@ -1,10 +1,14 @@
 import React from "react";
 
+/**
+ * Loading component for the project, is shown whenever data is loading from firebase
+ * @returns A loading component
+ */
 export default function Loading() {
   return (
     <div className="flex flex-col justify-center items-center">
       <div className="flex flex-row justify-center items-center">
-        <svg className="animate-spin h-8 w-8 rounded-md bg-blue-500 m-5" viewBox="0 0 24 24"></svg> 
+        <svg className="animate-spin h-8 w-8 rounded-md bg-blue-500 m-5" viewBox="0 0 24 24"></svg>
         <svg className="animate-spin h-8 w-8 rounded-md bg-blue-500 m-5" viewBox="0 0 24 24"></svg> 
         <svg className="animate-spin h-8 w-8 rounded-md bg-blue-500 m-5" viewBox="0 0 24 24"></svg> 
       </div>

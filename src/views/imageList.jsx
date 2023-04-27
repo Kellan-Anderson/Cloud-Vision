@@ -8,10 +8,16 @@ import SignIn from "../components/signin";
 import { useAuthState } from "react-firebase-hooks/auth";
 import Loading from "../components/Loading";
 
+/**
+ * Lists all the uploaded images on a page
+ * @returns Image list component
+ */
 export default function ImageList() {
+  // Get a reference to the firebase app
   const getFirebaseApp = useContext(FirebaseContext);
   const app = getFirebaseApp();
 
+  // Get an auth instance and reset it upon any changes
   const auth = getAuth(app);
   const [authUser, authLoading, authError] = useAuthState(auth);
   const [user, setUser] = useState(authUser);
@@ -21,8 +27,9 @@ export default function ImageList() {
     setUserId(authUser !== null ? authUser.uid : userId);
   }, [authLoading, authUser]);
   
-
-  let [v, firestoreLoading, firestoreError] = useCollection(collection(getFirestore(app), userId));
+  // Get images from the firestore and assign the data to a variable. Resets the variable upon auth
+  // change
+  const [v, firestoreLoading, firestoreError] = useCollection(collection(getFirestore(app), userId))
   const [value, setValue] = useState(undefined);
   useEffect(() => {
     setValue(v);
@@ -32,6 +39,7 @@ export default function ImageList() {
     <>
     {user ? 
       <> 
+      {/* display a loading component while the images are loading */}
       { firestoreLoading || authLoading ? <Loading /> :
         <div>
           <h1 className="w-full font-semibold text-4xl md:text-8xl mb-12 mt-24 mx-0 text-center">
@@ -39,6 +47,7 @@ export default function ImageList() {
           </h1>
           <div className="w-full md:px-8">
             <div className="flex flex-row flex-wrap justify-center w-full">
+              {/* Map over all the images in the firestore and display them in a card component */}
               <>
                 {value?.docs.map((doc) => <ImageCard key={doc.id} imageDoc={doc}/> )}
               </>
