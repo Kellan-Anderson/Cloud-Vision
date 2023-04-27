@@ -11,12 +11,13 @@ import SignIn from "../components/signin";
 import ImageAnnotations from "../components/ImageAnnotations";
 
 export default function ImagePage() {
+  // Get the firebase app reference
   const getFirebaseApp = useContext(FirebaseContext);
   const app = getFirebaseApp();
   const auth = getAuth(app);
   const { id } = useParams();
 
-  // Auth
+  // Get the auth instance and reset it if it changes
   const [authUser, authLoading, authError] = useAuthState(auth);
   const [user, setUser] = useState(authUser);
   const [userId, setUserId] = useState('dummy-do-not-delete');
@@ -25,21 +26,26 @@ export default function ImagePage() {
     setUserId(authUser !== null ? authUser.uid : userId);
   }, [authLoading, authUser]);
 
-  // Firestore
+  // Get the firestore instance and reset its value if it changes
   const [val, loading, error] = useDocument(doc(getFirestore(app), userId, id));
   const [image, setImage] = useState(val);
   useEffect(() => {
     setImage(val)
   }, [val]);
-              
+
+  // Get the url from the firebase data
   let path, filename;
   let labels = [];
   let url = '';
   if(image) {
+    // Get the data
     const data = image.data();
+    // Get the guesses
     labels = data.labelAnnotations;
+    // Get the filename and use it to get the image url
     [path, filename] = data.uri.split("/");
-    url = `https://firebasestorage.googleapis.com/v0/b/vision-media-b5556.appspot.com/o/${path}%2F${filename}?alt=media`;
+    url = `https://firebasestorage.googleapis.com/v0/b/vision-media-b5556.appspot.com/o/
+           ${path}%2F${filename}?alt=media`;
   }
 
   return (
@@ -48,7 +54,8 @@ export default function ImagePage() {
       <div className="flex flex-col justify-center items-center w-full">
         {loading ? <Loading /> : 
           <>
-          <ImageAnnotations url={url} doc={val}></ImageAnnotations>
+            {/* Show the iamge annotations */}
+            <ImageAnnotations url={url} doc={val}></ImageAnnotations>
             <h1 className="mt-7 mb-10">{filename}</h1>
             {val.data().webDetection.bestGuessLabels && <p>🤔 I think this is a "{val.data().webDetection.bestGuessLabels[0].label}"</p>}
             <section className="px-20 mb-6 w-full">
@@ -56,9 +63,11 @@ export default function ImagePage() {
                 id="image-description" 
                 className="mt-1 grid md:grid-cols-2 justify-center rounded-xl"
               >
+                {/* Map over the labels in the code and show the guess */}
                 <div>
                   <h2 className="text-center">Labels</h2>
                 {labels.map((label) => {
+                  // Get the width for the guess
                   const width = (label.score * 100).toFixed(3);
                   return (
                     <div className="h-12 my-2 mx-3 bg-gray-700 rounded-lg first:mt-4 last:mb-4">

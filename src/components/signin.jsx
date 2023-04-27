@@ -4,25 +4,36 @@ import { getAuth } from "firebase/auth";
 import { useSignInWithGoogle, useSignInWithGithub } from "react-firebase-hooks/auth";
 import FirebaseContext from "../context/firebase";
 
+/**
+ * Sign in component for the application, is shown whenever a user is trying to view a protected 
+ * route
+ * @returns A sign in component
+ */
 export default function SignIn() {
+  // Get a reference to the firebase app and the auth instance
   const getFirebaseApp = useContext(FirebaseContext);
   const app = getFirebaseApp();
   const auth = getAuth(app);
 
+  // Get the functions to sign in with google and github
   const [signInWithGithub, googleUser, googleLoading, googleError] = useSignInWithGithub(auth);
   const [signInWithGoogle, githubUser, githubLoading, githubError] = useSignInWithGoogle(auth);
 
+  // signs in with github
   const handleSignInGithub = () => {
     signInWithGithub();
   }
 
+  // signs in with google
   const handleSignInGoogle = () => {
     signInWithGoogle();
   }
 
   return (
     <div className="flex flex-col">
+      {/* Google sign in button */}
       <button className="btn-sign-in" onClick={handleSignInGoogle}>
+        {/* Google logo svg */}
         <svg 
           className="h-5 w-5 mr-2" 
           viewBox="0 0 21 20" 
@@ -57,8 +68,13 @@ export default function SignIn() {
         Sign In with Google
       </button>
 
+      {/* Github sign in button */}
       <button className="btn-sign-in" onClick={handleSignInGithub}>
         <svg xmlns="http://www.w3.org/2000/svg" className="h-5 w-5 mr-2" viewBox="0 0 24 24">
+          {/* 
+          This line exceeds the limit but it cannot be broken down due to the way paths are rendered
+          in an svg
+          */}
           <path d="M12 0c-6.626 0-12 5.373-12 12 0 5.302 3.438 9.8 8.207 
                    11.387.599.111.793-.261.793-.577v-2.234c-3.338.726-4.033-1.416-4.033-1.416-.546-1.387-1.333-1.756-1.333-1.756-1.089-.745.083-.729.083-.729 
                    1.205.084 1.839 1.237 1.839 1.237 1.07 1.834 2.807 1.304 

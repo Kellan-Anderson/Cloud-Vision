@@ -5,18 +5,27 @@ import { useAuthState } from 'react-firebase-hooks/auth';
 import SignIn from './components/signin';
 import { useNavigate } from 'react-router-dom';
 
+/**
+ * Home page for the application, makes sure the user is signed in and provides a menu to the screen
+ * @returns Home page component
+ */
 function App() {
-
+  // Get the firebase app reference from the firebase context
   const getFirebaseApp = useContext(FirebaseContext);
   const app = getFirebaseApp();
+
+  // Get an auth instance from the app
   const auth = getAuth(app);
   const [authUser, loading, error] = useAuthState(auth);
 
+  // Creates a variable using a useState hook to reset the page whenever the use has been loaded
   const [user, setUser] = useState(authUser);
   useEffect(() => {
+    // Runs whenever the auth state has been re-assigned from null (default) to the users instance
     setUser(authUser);
   }, [authUser, loading]);
 
+  // Gets a function to navigate to a different webpage
   const navigateTo = useNavigate();
 
   return (
@@ -25,6 +34,7 @@ function App() {
       <>
         <h1 className='mb-8'>Hello {user.displayName.split(" ")[0]}!</h1>
         <div className='flex flex-col'>
+          {/* Upload button */}
           <button className='btn-primary' onClick={() => navigateTo("upload/")}>
             <svg xmlns="http://www.w3.org/2000/svg" className="icon" viewBox="0 0 640 512">
               <path d="M144 480C64.5 480 0 415.5 0 336c0-62.8 40.2-116.2 
@@ -38,6 +48,7 @@ function App() {
             </svg>
             Upload image
           </button>
+          {/* View images button */}
           <button className='btn-primary' onClick={() => navigateTo("images")}>
             <svg xmlns="http://www.w3.org/2000/svg" className='icon' viewBox="0 0 576 512">
               <path d="M160 80H512c8.8 0 16 7.2 16 16V320c0 8.8-7.2 16-16 16H490.8L388.1 
@@ -51,11 +62,13 @@ function App() {
             </svg>
             View images
           </button>
+          {/* Sign out button */}
           <button className='btn-primary' onClick={() => auth.signOut()}>Sign out</button>
         </div> 
       </>
       : 
       <>
+        {/* Shown whenever somebody needs to sign in */}
         <h1 className='mb-8'>Welcome to Vision Media!</h1>
         <SignIn />
       </>
