@@ -3,7 +3,7 @@ import React from "react";
 export default function ImageCard({ imageDoc }) {
   const data = imageDoc.data();
   const [path, filename] = data.uri.split("/");
-  const labels = data.label_detection.labelAnnotations;
+  const labels = data.labelAnnotations;
   const url = `https://firebasestorage.googleapis.com/v0/b/vision-media-b5556.appspot.com/o/${path}%2F${filename}?alt=media`
 
   return (
