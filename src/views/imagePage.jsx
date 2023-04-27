@@ -54,8 +54,10 @@ export default function ImagePage() {
             <section className="px-20 mb-6 w-full">
               <div 
                 id="image-description" 
-                className="flex flex-col justify-center bg-neutral-950 rounded-xl"
+                className="mt-1 grid md:grid-cols-2 justify-center rounded-xl"
               >
+                <div>
+                  <h2 className="text-center">Labels</h2>
                 {labels.map((label) => {
                   const width = (label.score * 100).toFixed(3);
                   return (
@@ -71,6 +73,28 @@ export default function ImagePage() {
                     </div>
                   )
                 })}
+                </div>
+                <div>
+                <h2 className="text-center">Web Detection Entities (non-normalized scores)</h2>
+
+                {val.data().webDetection.webEntities.map((entity) => {
+                  console.log(entity)
+                  const width = (entity.score * 100).toFixed(3);
+                  return (
+                    <div className="h-12 my-2 mx-3 bg-gray-700 rounded-lg first:mt-4 last:mb-4">
+                      <div 
+                        className="flex items-center justify-between h-full px-2 bg-red-700 
+                        rounded-xl" 
+                        style={{width: `${width}%`}}
+                        >
+                        <h2>{entity.description}</h2>
+                        <h2>{entity.score.toFixed(2)}</h2>
+                      </div>
+                    </div>
+                  )
+                })}
+              </div>
+
               </div>
             </section>
           </>
