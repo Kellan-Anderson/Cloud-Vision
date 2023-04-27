@@ -7,7 +7,6 @@ import { Outlet, BrowserRouter, Routes, Route } from 'react-router-dom'
 import ImageList from './views/imageList'
 import ImagePage from './views/imagePage'
 import NavBar from './components/NavBar'
-import Albums from './views/albums'
 import ImageUpload from "./views/imageUpload";
 
 /**
