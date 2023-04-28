@@ -86,7 +86,7 @@ export default function ImagePage() {
                 <div>
                 <h2 className="text-center">Web Detection Entities (non-normalized scores)</h2>
 
-                {val.data().webDetection.webEntities.map((entity) => {
+                {val.data().webDetection.webEntities.filter(entity => entity.description != "").map((entity) => {
                   console.log(entity)
                   const width = (entity.score * 100).toFixed(3);
                   return (
