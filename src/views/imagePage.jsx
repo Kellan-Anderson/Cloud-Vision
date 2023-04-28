@@ -33,6 +33,8 @@ export default function ImagePage() {
     setImage(val)
   }, [val]);
 
+  const maxScore = val ? Math.max(...val.data().webDetection.webEntities.map(entity => entity.score)) : 0;
+
   // Get the url from the firebase data
   let path, filename;
   let labels = [];
@@ -87,8 +89,7 @@ export default function ImagePage() {
                 <h2 className="text-center">Web Detection Entities (non-normalized scores)</h2>
 
                 {val.data().webDetection.webEntities.filter(entity => entity.description != "").map((entity) => {
-                  console.log(entity)
-                  const width = (entity.score * 100).toFixed(3);
+                  const width = ((entity.score / maxScore) * 100).toFixed(2);
                   return (
                     <div className="h-12 my-2 mx-3 bg-gray-700 rounded-lg first:mt-4 last:mb-4">
                       <div 
