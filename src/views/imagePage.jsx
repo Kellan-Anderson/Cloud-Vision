@@ -44,8 +44,8 @@ export default function ImagePage() {
     labels = data.labelAnnotations;
     // Get the filename and use it to get the image url
     [path, filename] = data.uri.split("/");
-    url = `https://firebasestorage.googleapis.com/v0/b/vision-media-b5556.appspot.com/o/
-           ${path}%2F${filename}?alt=media`;
+    // must be on a single line to avoid a newline
+    url = `https://firebasestorage.googleapis.com/v0/b/vision-media-b5556.appspot.com/o/${path}%2F${filename}?alt=media`;
   }
 
   return (
