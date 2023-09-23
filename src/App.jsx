@@ -71,6 +71,8 @@ function App() {
         {/* Shown whenever somebody needs to sign in */}
         <h1 className='mb-8'>Welcome to Vision Media!</h1>
         <SignIn />
+        <p className='mb-8'>Please keep in mind that this is a tech demo. All files you upload are publicly visible, though you can delete them at any time.</p>
+
       </>
     }
     </div>
